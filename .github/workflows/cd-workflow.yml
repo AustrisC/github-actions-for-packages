@@ -57,15 +57,15 @@ jobs:
       with:
         name: webpack artifacts
         path: public
-    - name: Read Docker Image Identifiers
-      run: echo ::set-env name=IMAGE_REPOSITORY::$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')
+    # - name: Read Docker Image Identifiers
+    #   run: echo ::set-env name=IMAGE_REPOSITORY::$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')
     - name: Build container image
       uses: docker/build-push-action@v1
       with:
         username: ${{github.actor}}
         password: ${{secrets.GITHUB_TOKEN}}
         registry: docker.pkg.github.com
-        repository: ${{ env.IMAGE_REPOSITORY }}//tic-tac-toe
+        repository: austrisc/github-actions-for-packages/tic-tac-toe
         tag_with_sha: true
         tag_with_ref: false
         path: .
